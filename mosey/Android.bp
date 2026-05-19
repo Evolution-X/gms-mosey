@@ -1,0 +1,92 @@
+//
+// Manually maintained file.
+//
+// vendor/gms-mosey/setup-makefiles.sh is not present in this tree, so local Mosey
+// adjustments live here.
+
+soong_namespace {
+    imports: [
+        "hardware/google/av",
+        "hardware/google/interfaces",
+        "hardware/google/pixel",
+        "vendor/gms-mosey/mosey_nopauth",
+    ],
+}
+
+soong_config_module_type {
+    name: "mosey_filegroup",
+    module_type: "filegroup",
+    config_namespace: "gms_mosey",
+    bool_variables: ["uses_nopauth"],
+    properties: ["srcs"],
+}
+
+mosey_filegroup {
+    name: "mosey_server_prebuilt_src",
+    soong_config_variables: {
+        uses_nopauth: {
+            srcs: [":mosey_server_nopauth_blob"],
+            conditions_default: {
+                srcs: ["bin/mosey_server"],
+            },
+        },
+    },
+}
+
+cc_prebuilt_library_shared {
+    name: "libmosey_daemon_ffi",
+    owner: "google",
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm64: {
+            srcs: [
+                "lib64/libmosey_daemon_ffi.so",
+            ],
+            shared_libs: [
+                "libdl",
+                "liblog",
+                "libc",
+                "libm",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    prefer: true,
+    soc_specific: true,
+}
+
+prebuilt_etc_xml {
+    name: "manifest_mosey.xml",
+    owner: "google",
+    src: "etc/vintf/manifest/manifest_mosey.xml",
+    filename_from_src: true,
+    sub_dir: "vintf/manifest",
+    soc_specific: true,
+}
+
+cc_prebuilt_binary {
+    name: "mosey_server",
+    owner: "google",
+    stem: "mosey_server",
+    target: {
+        android_arm64: {
+            srcs: [
+                ":mosey_server_prebuilt_src",
+            ],
+            shared_libs: [
+                "libbinder_ndk",
+                "liblog",
+                "libc",
+                "libdl",
+            ],
+        },
+    },
+    compile_multilib: "64",
+    strip: {
+        none: true,
+    },
+    prefer: true,
+    soc_specific: true,
+}
