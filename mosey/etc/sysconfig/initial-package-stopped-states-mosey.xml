@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-License-Identifier: Apache-2.0
+
+  Mosey has no BOOT_COMPLETED receiver and is not woken by GMS by package name,
+  so without this entry it stays stopped=true on first boot and GMS NearbySharing
+  skips it in queryIntentServices for com.google.android.nearby.SHARING_PROVIDER.
+-->
+<config>
+    <initial-package-state package="com.google.android.mosey" stopped="false"/>
+</config>
