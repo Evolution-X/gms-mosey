@@ -9,7 +9,8 @@ $(call soong_config_set_bool,gms_mosey,uses_nopauth,$(TARGET_USES_MOSEY_NOPAUTH)
 
 PRODUCT_COPY_FILES += \
     vendor/gms-mosey/mosey/etc/init/mosey.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/mosey.rc \
-    vendor/gms-mosey/mosey/etc/sysconfig/initial-package-stopped-states-mosey.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/initial-package-stopped-states-mosey.xml
+    vendor/gms-mosey/mosey/etc/sysconfig/initial-package-stopped-states-mosey.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/initial-package-stopped-states-mosey.xml \
+    vendor/gms-mosey/mosey/etc/sysconfig/locked-components-mosey.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/sysconfig/locked-components-mosey.xml
 
 DEVICE_PRODUCT_COMPATIBILITY_MATRIX_FILE += \
     vendor/gms-mosey/mosey/etc/vintf/device_framework_matrix_mosey.xml

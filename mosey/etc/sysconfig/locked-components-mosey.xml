@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  SPDX-License-Identifier: Apache-2.0
+
+  Keep Mosey's ExternalSharingService resolvable for GMS NearbySharing.
+  PackageSetting.disableComponentLPw refuses to disable any (package, class)
+  declared here; systemReady restores stale per-user disable overrides for
+  the same pair. The manifest already marks the service enabled=true — this
+  tag only adds the lock.
+-->
+<config>
+    <locked-component package="com.google.android.mosey"
+                      class="com.google.android.mosey.ExternalSharingService"/>
+</config>
