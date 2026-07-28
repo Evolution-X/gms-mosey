@@ -3,7 +3,7 @@
 //
 // Export only the audited no-PAuth blob. The installable mosey_server module
 // lives in vendor/gms-mosey/mosey and selects this blob through Soong config, which
-// avoids emitting two install rules for /vendor/bin/mosey_server.
+// avoids emitting two install rules for /system_ext/bin/mosey_server.
 
 soong_namespace {
 }

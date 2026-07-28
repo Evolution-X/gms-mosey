@@ -54,7 +54,7 @@ cc_prebuilt_library_shared {
     },
     compile_multilib: "64",
     prefer: true,
-    soc_specific: true,
+    system_ext_specific: true,
 }
 
 prebuilt_etc_xml {
@@ -63,7 +63,7 @@ prebuilt_etc_xml {
     src: "etc/vintf/manifest/manifest_mosey.xml",
     filename_from_src: true,
     sub_dir: "vintf/manifest",
-    soc_specific: true,
+    system_ext_specific: true,
 }
 
 cc_prebuilt_binary {
@@ -88,5 +88,5 @@ cc_prebuilt_binary {
         none: true,
     },
     prefer: true,
-    soc_specific: true,
+    system_ext_specific: true,
 }
